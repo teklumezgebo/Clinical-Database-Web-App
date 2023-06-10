@@ -9,6 +9,7 @@ function NewPatient() {
             <label for="hypertention">Hypertenstion</label>
             <input type="checkbox" id="diabetes"></input>
             <label for="Diabetes">Diabetes</label>
+            <input type="submit"></input>
         </form>
     )
 }
