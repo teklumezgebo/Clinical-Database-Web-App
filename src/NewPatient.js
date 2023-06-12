@@ -5,14 +5,14 @@ import Patient from "./Patient";
 function NewPatient({ onListChange }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [hypertensive, setHypertensive] = useState('')
-    const [diabetic, setDiabetic] = useState('')
+    const [hypertension, setHypertensive] = useState('')
+    const [diabetes, setDiabetic] = useState('')
 
     const patientObj = {
         first_name: firstName,
         last_name: lastName,
-        hypertenstion: hypertensive,
-        diabetes: diabetic
+        hypertension: hypertension,
+        diabetes: diabetes
     }
 
     function handleFirstName(event){
@@ -24,7 +24,7 @@ function NewPatient({ onListChange }) {
     }
 
     function handleHypertension(event) {
-        if (event.target.value == true) {
+        if (event.target.checked === true) {
             setHypertensive(true)
         } else {
             setHypertensive(false)
@@ -32,7 +32,7 @@ function NewPatient({ onListChange }) {
     }
 
     function handleDiabetic(event) {
-        if (event.target.value == true) {
+        if (event.target.checked === true) {
             setDiabetic(true)
         } else {
             setDiabetic(false)
