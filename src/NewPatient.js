@@ -14,6 +14,31 @@ function NewPatient() {
         diabetes: diabetic
     }
 
+    function handleFirstName(event){
+        setFirstName(event.target.value)
+    }
+
+    function handleLastName(event) {
+        setLastName(event.target.value)
+    }
+
+    function handleHypertension(event) {
+        if (event.target.value == true) {
+            setHypertensive(true)
+        } else {
+            setHypertensive(false)
+        }
+    }
+
+    function handleDiabetic(event) {
+        if (event.target.value == true) {
+            setDiabetic(true)
+        } else {
+            setDiabetic(false)
+        }
+    }
+
+
     function handleNewPatient() {
         fetch('http://localhost:9292/patients', {
             method: "POST",
@@ -24,18 +49,18 @@ function NewPatient() {
         })
         .then(res => res.json())
         .then(patient => {
-            
+
         })
     }
 
     
     return (
         <form>
-            <input type="text" placeholder="First Name"></input>
-            <input type="text" placeholder="Last Name"></input>
-            <input type="checkbox" id="hypertenstion"></input>
+            <input type="text" placeholder="First Name" onChange={handleFirstName}></input>
+            <input type="text" placeholder="Last Name" onChange={handleLastName}></input>
+            <input type="checkbox" id="hypertenstion" onChange={handleHypertension}></input>
             <label for="hypertention">Hypertenstion</label>
-            <input type="checkbox" id="diabetes"></input>
+            <input type="checkbox" id="diabetes" onChange={handleDiabetic}></input>
             <label for="Diabetes">Diabetes</label>
             <input type="submit"></input>
         </form>

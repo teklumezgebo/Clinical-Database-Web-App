@@ -14,11 +14,10 @@ function App() {
       <Homepage/>
       </Route>
       <Route path="/patients">
+      <NewPatient/>
+      <br></br>
       <PatientForm/>
       <PatientList />
-      </Route>
-      <Route path="/newpatient">
-      <NewPatient/>
       </Route>
       <Route path="/clinicians">
       <ClinicainForm/>
