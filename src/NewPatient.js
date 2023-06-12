@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import Patient from "./Patient";
 
-function NewPatient() {
+function NewPatient({ onListChange }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [hypertensive, setHypertensive] = useState('')
@@ -49,13 +50,14 @@ function NewPatient() {
         })
         .then(res => res.json())
         .then(patient => {
-
+            const newPatient = <Patient id={patient.id} firstName={patient.first_name} lastName={patient.last_name} hypertension={patient.hypertension} diabetes={patient.diabetes}/>
+            onListChange(newPatient)
         })
     }
 
     
     return (
-        <form>
+        <form onSubmit={handleNewPatient}>
             <input type="text" placeholder="First Name" onChange={handleFirstName}></input>
             <input type="text" placeholder="Last Name" onChange={handleLastName}></input>
             <input type="checkbox" id="hypertenstion" onChange={handleHypertension}></input>
