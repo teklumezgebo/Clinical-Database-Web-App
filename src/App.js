@@ -5,6 +5,7 @@ import ClinicainForm from './ClinicianForm';
 import NewPatient from './NewPatient';
 import ClinicForm from './ClinicForm';
 import Homepage from './Homepage';
+import PatientList from './PatientList';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       </Route>
       <Route path="/patients">
       <PatientForm/>
+      <PatientList />
       </Route>
       <Route path="/newpatient">
       <NewPatient/>
