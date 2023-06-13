@@ -26,7 +26,7 @@ function NewPatient({ onListChange }) {
     function handleHypertension(event) {
         if (event.target.checked === true) {
             setHypertensive(true)
-        } else {
+        } else if (event.target.checked === false) {
             setHypertensive(false)
         }
     }
@@ -34,7 +34,7 @@ function NewPatient({ onListChange }) {
     function handleDiabetic(event) {
         if (event.target.checked === true) {
             setDiabetic(true)
-        } else {
+        } else if (event.target.checked === false) {
             setDiabetic(false)
         }
     }

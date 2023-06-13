@@ -46,17 +46,18 @@ function App() {
         const filteredList = patientList.filter(patient => patient.props.id !== id)
         setPatientList(filteredList)
     })
-}
+  }
   
   return (
     <div className="App">
       <Route exact path="/">
       <Homepage/>
+      <br></br>
+      <PatientForm/>
       </Route>
       <Route path="/patients">
       <NewPatient onListChange={setNewList}/>
       <br></br>
-      <PatientForm/>
       <PatientList patientList={patientList}/>
       </Route>
       <Route path="/clinicians">
