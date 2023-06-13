@@ -4,8 +4,8 @@ function PatientForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [homeValue, setHomeValue] = useState('')
-    const [bloodPressure, setBloodPressure] = useState('')
-    const [bloodSugar, setBloodSugar] = useState('')
+    const [bloodPressure, setBloodPressure] = useState(false)
+    const [bloodSugar, setBloodSugar] = useState(false)
 
     function onFirstNameChange(event) {
         setFirstName(event.target.value)
@@ -33,6 +33,18 @@ function PatientForm() {
         } else if (event.target.checked === false) {
             setBloodSugar(false)
         }
+    }
+
+    const patientForm = {
+        firstName: firstName,
+        lastName: lastName,
+        homeValue: homeValue,
+        bloodPressure: bloodPressure,
+        bloodSugar: bloodSugar
+    }
+
+    function onPatientFormSubmit(){
+
     }
     
     
