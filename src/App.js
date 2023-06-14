@@ -74,11 +74,11 @@ function App() {
     <div className="App">
       <Route exact path="/">
       <Homepage/>
-      <br></br>
-      <PatientForm/>
       </Route>
       <Route path="/patients">
       <NewPatient onListChange={setNewList}/>
+      <br></br>
+      <PatientForm/>
       <br></br>
       <PatientList patientList={patientList}/>
       </Route>

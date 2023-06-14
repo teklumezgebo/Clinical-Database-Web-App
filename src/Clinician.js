@@ -3,9 +3,7 @@ import React from "react";
 function Cliniain({ id, name, title, clinicId }) {
     return(
         <div>
-            <h4>{name}</h4>
-            <h4>{title}</h4>
-            <p>{clinicId}</p>
+            <h4>{name}, {title}  {clinicId}</h4>
         </div>
     )
 }
