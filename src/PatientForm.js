@@ -3,9 +3,11 @@ import React, { useState } from "react";
 function PatientForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [homeValue, setHomeValue] = useState('')
-    const [bloodPressure, setBloodPressure] = useState(false)
-    const [bloodSugar, setBloodSugar] = useState(false)
+    const [bloodSugar, setBloodSugar] = useState('')
+    const [systolic, setSystolic] = useState('')
+    const [diastolic, setDiastolic] = useState('')
+    const [bpForm, setBpForm] = useState(false)
+    const [bsForm, setBsForm] = useState(false)
 
     function onFirstNameChange(event) {
         setFirstName(event.target.value)
@@ -15,47 +17,56 @@ function PatientForm() {
         setLastName(event.target.value)
     }
 
-    function onHomeValueChange(event) {
-        setHomeValue(event.target.value)
+    function onBloodSugarChange(event) {
+        setBloodSugar(event.target.value)
     }
 
-    function onBloodPressureChange(event) {
+    function onSystolicChange(event) {
+        setSystolic(event.target.value)
+    }
+
+    function onDiastolicChange(event) {
+        setDiastolic(event.target.value)
+    }
+
+    function onBpFormChange(event) {
         if (event.target.checked === true) {
-            setBloodPressure(true)
+            setBpForm(true)
         } else if (event.target.checked === false) {
-            setBloodPressure(false)
+            setBpForm(false)
         }
     }
 
-    function onBloodSugarChange(event) {
+    function onBsFormChange(event) {
         if (event.target.checked === true) {
-            setBloodSugar(true)
+            setBsForm(true)
         } else if (event.target.checked === false) {
-            setBloodSugar(false)
+            setBsForm(false)
         }
     }
 
     const patientForm = {
-        firstName: firstName,
-        lastName: lastName,
-        homeValue: homeValue,
-        bloodPressure: bloodPressure,
-        bloodSugar: bloodSugar
+        first_name: firstName,
+        last_name: lastName,
+        blood_sugar: bloodSugar,
+        systolic: systolic,
+        diastolic: diastolic
     }
 
-    function onPatientFormSubmit(){
-
-    }
+    // function onPatientFormSubmit(){
+    //     fetch('')
+    // }
     
     
     return (
         <form>
             <input type="text" placeholder="First Name" onChange={onFirstNameChange}></input><br></br>
             <input type="text" placeholder="Last Name" onChange={onLastNameChange}></input><br></br>
-            <input type="text" placeholder="At home reading.." onChange={onHomeValueChange}></input><br></br>
-            <input type="radio" id="bp" onChange={onBloodPressureChange}></input>
+            {bpForm ?  <div><input type="integer" onChange={onSystolicChange} placeholder="systolic (top number)"></input><br></br><input type="integer" onChange={onDiastolicChange} placeholder="diastolic (bottom number)"></input></div> : null}
+            {bsForm ? <div><input type="integer" onChange={onBloodSugarChange}></input><br></br></div> : null}
+            <input type="checkbox" id="bp" onChange={onBpFormChange}></input>
             <label for="bpr">Blood Pressure</label><br></br>
-            <input type="radio" id="bs" onChange={onBloodSugarChange}></input>
+            <input type="checkbox" id="bs" onChange={onBsFormChange}></input>
             <label for="bs">Blood Sugar</label><br></br>
             <input type="submit"></input>
         </form>
