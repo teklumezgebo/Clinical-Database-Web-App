@@ -9,3 +9,5 @@ function Clinic({ id, name, location, clinicians }) {
         </div>
     )
 }
+
+export default Clinic

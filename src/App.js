@@ -7,14 +7,17 @@ import ClinicForm from './ClinicForm';
 import Homepage from './Homepage';
 import PatientList from './PatientList';
 import ClinicianList from './ClinicianList';
+import ClinicList from './ClinicList';
 import Patient from './Patient';
 import Cliniain from './Clinician';
+import Clinic from './Clinic';
 import { useState, useEffect } from 'react';
 
 function App() {
   
   const [patientList, setPatientList] = useState('')
   const [clinicianList, setClinicianList] = useState('')
+  const [clinicList, setClinicList] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:9292/patients')
@@ -56,6 +59,25 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    fetch('http://localhost:9292/clinics')
+    .then(res => res.json())
+    .then(list => {
+      const listofClinics = list.map(clinic => {
+        return (
+          <Clinic 
+          key={clinic.id} 
+          id={clinic.id} 
+          name={clinic.name} 
+          locaiton={clinic.location} 
+          clinicians={clinic.clinicians}
+          />
+        )
+      })
+      setClinicList(listofClinics)
+    })
+  }, [])
+
   function setNewList(newList) {
     setPatientList(() => patientList.unshift(newList))
   }
@@ -88,6 +110,8 @@ function App() {
       </Route>
       <Route path="/clinics">
       <ClinicForm/>
+      <br></br>
+      <ClinicList clinicList={clinicList}/>
       </Route>
     </div>
   );

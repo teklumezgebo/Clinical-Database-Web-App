@@ -37,7 +37,7 @@ function ClinicainForm() {
         })
         .then(res => res.json())
         .then(clinician => {
-
+            
         })
     }
     
