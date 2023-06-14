@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Patient from "./Patient";
 
-function NewPatient({ onListChange }) {
+function NewPatientForm({ onListChange }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [hypertension, setHypertensive] = useState('')
@@ -69,4 +69,4 @@ function NewPatient({ onListChange }) {
     )
 }
 
-export default NewPatient
+export default NewPatientForm

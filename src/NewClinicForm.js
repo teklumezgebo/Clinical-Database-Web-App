@@ -1,6 +1,6 @@
 import React from "react";
 
-function ClinicForm() {
+function NewClinicForm() {
     return(
         <form>
             <input type="text" placeholder="Clinic name.."></input>
@@ -10,4 +10,4 @@ function ClinicForm() {
     )
 }
 
-export default ClinicForm
+export default NewClinicForm

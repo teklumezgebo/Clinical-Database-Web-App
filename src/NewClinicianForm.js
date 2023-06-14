@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ClinicainForm() {
+function NewClinicainForm() {
     const [name, setName] = useState('')
     const [clinic, setClinic] = useState('')
     const [title, setTitle] = useState('')
@@ -58,4 +58,4 @@ function ClinicainForm() {
     )
 }
 
-export default ClinicainForm
+export default NewClinicainForm

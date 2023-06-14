@@ -1,9 +1,9 @@
 import './App.css';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import PatientForm from './PatientForm';
-import ClinicainForm from './ClinicianForm';
-import NewPatient from './NewPatient';
-import ClinicForm from './ClinicForm';
+import NewPatientForm from './NewPatientForm';
+import NewClinicainForm from './NewClinicianForm';
+import NewClinicForm from './NewClinicForm';
 import Homepage from './Homepage';
 import PatientList from './PatientList';
 import ClinicianList from './ClinicianList';
@@ -98,18 +98,18 @@ function App() {
       <Homepage/>
       </Route>
       <Route path="/patients">
-      <NewPatient onListChange={setNewList}/>
+      <NewPatientForm onListChange={setNewList}/>
       <br></br>
       <PatientForm/>
       <br></br>
       <PatientList patientList={patientList}/>
       </Route>
       <Route path="/clinicians">
-      <ClinicainForm/>
+      <NewClinicainForm/>
       <ClinicianList clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
-      <ClinicForm/>
+      <NewClinicForm/>
       <br></br>
       <ClinicList clinicList={clinicList}/>
       </Route>
