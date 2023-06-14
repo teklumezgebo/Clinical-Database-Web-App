@@ -6,6 +6,7 @@ import NewPatient from './NewPatient';
 import ClinicForm from './ClinicForm';
 import Homepage from './Homepage';
 import PatientList from './PatientList';
+import ClinicianList from './ClinicianList';
 import Patient from './Patient';
 import Cliniain from './Clinician';
 import { useState, useEffect } from 'react';
@@ -16,24 +17,24 @@ function App() {
   const [clinicianList, setClinicianList] = useState('')
 
   useEffect(() => {
-      fetch('http://localhost:9292/patients')
-      .then(res => res.json())
-      .then(list => {
-          const listOfPatients = list.map(patient => {
-              return (
-                  <Patient 
-                      key={patient.id} 
-                      id={patient.id} 
-                      firstName={patient.first_name} 
-                      lastName={patient.last_name} 
-                      hypertension={patient.hypertension} 
-                      diabetes={patient.diabetes} 
-                      onDelete={deletePatient}
-                  />
-              )
-          })
-          setPatientList(listOfPatients)
+    fetch('http://localhost:9292/patients')
+    .then(res => res.json())
+    .then(list => {
+      const listOfPatients = list.map(patient => {
+          return (
+            <Patient 
+            key={patient.id} 
+            id={patient.id} 
+            firstName={patient.first_name} 
+            lastName={patient.last_name} 
+            hypertension={patient.hypertension} 
+            diabetes={patient.diabetes} 
+            onDelete={deletePatient}
+            />
+          )
       })
+      setPatientList(listOfPatients)
+  })
   }, [])
 
   useEffect(() => {
@@ -41,8 +42,17 @@ function App() {
     .then(res => res.json())
     .then(list => {
       const listOfClinicians = list.map(clinician => {
-
+        return (
+          <Cliniain 
+          key={clinician.id} 
+          id={clinician.id} 
+          name={clinician.name} 
+          title={clinician.title} 
+          clinicId={clinician.clinic_id}
+          />
+        )
       })
+      setClinicianList(listOfClinicians)
     })
   }, [])
 
@@ -66,7 +76,6 @@ function App() {
       <Homepage/>
       <br></br>
       <PatientForm/>
-      {}
       </Route>
       <Route path="/patients">
       <NewPatient onListChange={setNewList}/>
@@ -75,6 +84,7 @@ function App() {
       </Route>
       <Route path="/clinicians">
       <ClinicainForm/>
+      <ClinicianList clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
       <ClinicForm/>
