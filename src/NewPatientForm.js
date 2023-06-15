@@ -79,10 +79,10 @@ function NewPatientForm({ onPatientChange }) {
             <form onSubmit={handleNewPatient}>
             <input type="text" placeholder="First Name" onChange={handleFirstName}></input>
             <input type="text" placeholder="Last Name" onChange={handleLastName}></input>
-            <input type="checkbox" id="hypertenstion" onChange={handleHypertension}></input>
-            <label for="hypertention">Hypertenstion</label>
+            <input type="checkbox" id="hypertension" onChange={handleHypertension}></input>
+            <label htmlFor="hypertension">Hypertenstion</label>
             <input type="checkbox" id="diabetes" onChange={handleDiabetic}></input>
-            <label for="Diabetes">Diabetes</label>
+            <label htmlFor="diabetes">Diabetes</label>
             <br></br>
             <input type="submit" value="Add New"></input>
             </form>

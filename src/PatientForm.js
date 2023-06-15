@@ -74,9 +74,9 @@ function PatientForm() {
             {bpForm ?  <div><input type="integer" onChange={onSystolicChange} placeholder="systolic (top number)"></input><br></br><input type="integer" onChange={onDiastolicChange} placeholder="diastolic (bottom number)"></input></div> : null}
             {bsForm ? <div><input type="integer" onChange={onBloodSugarChange}></input><br></br></div> : null}
             <input type="checkbox" id="bp" onChange={onBpFormChange}></input>
-            <label for="bpr">Blood Pressure</label><br></br>
+            <label htmlFor="bp">Blood Pressure</label><br></br>
             <input type="checkbox" id="bs" onChange={onBsFormChange}></input>
-            <label for="bs">Blood Sugar</label><br></br>
+            <label htmlFor="bs">Blood Sugar</label><br></br>
             <input type="submit"></input>
         </form>
     )

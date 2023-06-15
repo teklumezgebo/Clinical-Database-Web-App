@@ -79,16 +79,19 @@ function App() {
     })
   }, [])
 
-  function addPatient(newList) {
-    setPatientList(patientList.unshift(newList))
+  function addPatient(patient) {
+    const addedPatient = patientList.push(patient)
+    setPatientList(addedPatient)
   }
 
-  function addClinician(newList) {
-    setClinicianList(() => clinicianList.unshift(newList))
+  function addClinician(clinician) {
+    const addedClinician = clinicianList.unshift(clinician)
+    setClinicianList(addedClinician)
   }
 
-  function addClinic(newList) {
-    setClinicList(() => clinicList.unshift(newList))
+  function addClinic(clinic) {
+    const addedClinic = clinicList.unshift(clinic)
+    setClinicList(addedClinic)
   }
 
   function deletePatient(id) {
