@@ -28,7 +28,8 @@ function NewClinicainForm({ onClinicChange }) {
         }
     }
 
-    function onClinicianFormSubmit() {
+    function onClinicianFormSubmit(event) {
+        event.preventDefault()
         fetch('http://localhost:9292/clinicians', {
             method: "POST",
             headers: {

@@ -18,7 +18,8 @@ function NewClinicForm({ onClinicChange }) {
         setLocation(event.target.value)
     }
 
-    function onClincFormSubmit() {
+    function onClincFormSubmit(event) {
+        event.preventDefault()
         fetch('http://localhost:9292/clinics', {
             method: 'POST',
             headers: {
@@ -34,7 +35,7 @@ function NewClinicForm({ onClinicChange }) {
     }
     
     return(
-        <form>
+        <form onSubmit={onClincFormSubmit}>
             <input type="text" placeholder="Clinic name.." onChange={onNameChange}></input>
             <input type="text" placeholder="Clinic location.." onChange={onLocationChange}></input>
             <input type="submit"></input>

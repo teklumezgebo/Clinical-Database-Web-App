@@ -40,7 +40,8 @@ function NewPatientForm({ onPatientChange }) {
     }
 
 
-    function handleNewPatient() {
+    function handleNewPatient(event) {
+        event.preventDefault()
         fetch('http://localhost:9292/patients', {
             method: "POST",
             headers: {
