@@ -78,8 +78,16 @@ function App() {
     })
   }, [])
 
-  function setNewList(newList) {
+  function addPatient (newList) {
     setPatientList(() => patientList.unshift(newList))
+  }
+
+  function addClinician (newList) {
+    setClinicianList(() => clinicianList.unshift(newList))
+  }
+
+  function addClinic (newList) {
+    setClinicList(() => clinicList.unshift(newList))
   }
 
   function deletePatient(id) {
@@ -98,18 +106,18 @@ function App() {
       <Homepage/>
       </Route>
       <Route path="/patients">
-      <NewPatientForm onListChange={setNewList}/>
+      <NewPatientForm onPatientChange={addPatient}/>
       <br></br>
       <PatientForm/>
       <br></br>
       <PatientList patientList={patientList}/>
       </Route>
       <Route path="/clinicians">
-      <NewClinicainForm/>
+      <NewClinicainForm onClinicianChange={addClinician}/>
       <ClinicianList clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
-      <NewClinicForm/>
+      <NewClinicForm onClinicChange={addClinic}/>
       <br></br>
       <ClinicList clinicList={clinicList}/>
       </Route>

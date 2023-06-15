@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Cliniain from "./Clinician";
 
-function NewClinicainForm() {
+function NewClinicainForm({ onClinicChange }) {
     const [name, setName] = useState('')
     const [clinic, setClinic] = useState('')
     const [title, setTitle] = useState('')
@@ -37,7 +38,8 @@ function NewClinicainForm() {
         })
         .then(res => res.json())
         .then(clinician => {
-            
+            const newClinician = <Cliniain id={clinician.id} name={clinician.name} title={clinician.title} clinicId={clinician.clinic_id}/>
+            onClinicChange(newClinician)
         })
     }
     
