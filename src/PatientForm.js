@@ -4,8 +4,8 @@ function PatientForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [bloodSugar, setBloodSugar] = useState('')
-    const [systolic, setSystolic] = useState('')
-    const [diastolic, setDiastolic] = useState('')
+    const [systolic, setSystolic] = useState(null)
+    const [diastolic, setDiastolic] = useState(null)
     const [bpForm, setBpForm] = useState(false)
     const [bsForm, setBsForm] = useState(false)
 
@@ -53,13 +53,22 @@ function PatientForm() {
         diastolic: diastolic
     }
 
-    // function onPatientFormSubmit(){
-    //     fetch('')
-    // }
+    function onPatientFormSubmit(event){
+        event.preventDefault()
+        fetch(`http://localhost:9292/patientstats`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(patientForm)
+        })
+        .then(res => res.json())
+        .then(console.log('Posted'))
+    }
     
     
     return (
-        <form>
+        <form onSubmit={onPatientFormSubmit}>
             <input type="text" placeholder="First Name" onChange={onFirstNameChange}></input><br></br>
             <input type="text" placeholder="Last Name" onChange={onLastNameChange}></input><br></br>
             {bpForm ?  <div><input type="integer" onChange={onSystolicChange} placeholder="systolic (top number)"></input><br></br><input type="integer" onChange={onDiastolicChange} placeholder="diastolic (bottom number)"></input></div> : null}

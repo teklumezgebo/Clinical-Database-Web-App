@@ -25,7 +25,7 @@ function NewClinicForm({ onClinicChange }) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: clinicObj
+            body: JSON.stringify(clinicObj)
         })
         .then(res => res.json())
         .then(clinic => {

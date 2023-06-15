@@ -15,9 +15,9 @@ import { useState, useEffect } from 'react';
 
 function App() {
   
-  const [patientList, setPatientList] = useState('')
-  const [clinicianList, setClinicianList] = useState('')
-  const [clinicList, setClinicList] = useState('')
+  const [patientList, setPatientList] = useState([])
+  const [clinicianList, setClinicianList] = useState([])
+  const [clinicList, setClinicList] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:9292/patients')
@@ -78,15 +78,15 @@ function App() {
     })
   }, [])
 
-  function addPatient (newList) {
-    setPatientList(() => patientList.unshift(newList))
+  function addPatient(newList) {
+    setPatientList(patientList.unshift(newList))
   }
 
-  function addClinician (newList) {
+  function addClinician(newList) {
     setClinicianList(() => clinicianList.unshift(newList))
   }
 
-  function addClinic (newList) {
+  function addClinic(newList) {
     setClinicList(() => clinicList.unshift(newList))
   }
 
@@ -95,8 +95,7 @@ function App() {
         method: "DELETE"
     })
     .then(() => {
-        const filteredList = patientList.filter(patient => patient.props.id !== id)
-        setPatientList(filteredList)
+      setPatientList(patientList.filter(patient => patient.props.id !== id))
     })
   }
   
@@ -117,7 +116,7 @@ function App() {
       <ClinicianList clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
-      <NewClinicForm onClinicChange={addClinic}/>
+      <NewClinicForm onClinicAddition={addClinic}/>
       <br></br>
       <ClinicList clinicList={clinicList}/>
       </Route>
