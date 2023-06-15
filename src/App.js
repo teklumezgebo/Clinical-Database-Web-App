@@ -4,6 +4,7 @@ import PatientForm from './PatientForm';
 import NewPatientForm from './NewPatientForm';
 import NewClinicainForm from './NewClinicianForm';
 import NewClinicForm from './NewClinicForm';
+import PatientUpdateForm from './PatientUpdateForm';
 import Homepage from './Homepage';
 import PatientList from './PatientList';
 import ClinicianList from './ClinicianList';
@@ -110,6 +111,9 @@ function App() {
       <PatientForm/>
       <br></br>
       <PatientList patientList={patientList}/>
+      </Route>
+      <Route path="/updatepatient">
+      <PatientUpdateForm />
       </Route>
       <Route path="/clinicians">
       <NewClinicainForm onClinicianChange={addClinician}/>

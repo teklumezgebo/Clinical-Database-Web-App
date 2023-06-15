@@ -56,17 +56,38 @@ function NewPatientForm({ onPatientChange }) {
         })
     }
 
+    function handlePatientUpdate() {
+        fetch('http://localhost:9292/patients', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(patientObj)
+        })
+        .then(res => res.json())
+        .then(() => {
+            setFirstName('')
+            setLastName('')
+            setDiabetic('')
+            setHypertensive('')
+        })
+    }
+
     
     return (
-        <form onSubmit={handleNewPatient}>
+        <div>
+            <form onSubmit={handleNewPatient}>
             <input type="text" placeholder="First Name" onChange={handleFirstName}></input>
             <input type="text" placeholder="Last Name" onChange={handleLastName}></input>
             <input type="checkbox" id="hypertenstion" onChange={handleHypertension}></input>
             <label for="hypertention">Hypertenstion</label>
             <input type="checkbox" id="diabetes" onChange={handleDiabetic}></input>
             <label for="Diabetes">Diabetes</label>
-            <input type="submit"></input>
-        </form>
+            <br></br>
+            <input type="submit" value="Add New"></input>
+            </form>
+            <button onClick={handlePatientUpdate}>Update Existing</button>
+        </div>
     )
 }
 
