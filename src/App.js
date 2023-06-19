@@ -18,6 +18,7 @@ function App() {
   const [patientList, setPatientList] = useState([])
   const [clinicianList, setClinicianList] = useState([])
   const [clinicList, setClinicList] = useState([])
+  const [update, setOnUpdate] = useState(false)
 
   useEffect(() => {
     fetch('http://localhost:9292/patients')
@@ -38,7 +39,7 @@ function App() {
       })
       setPatientList(listOfPatients)
   })
-  }, [])
+  }, [update])
 
   useEffect(() => {
     fetch('http://localhost:9292/clinicians')
@@ -47,11 +48,9 @@ function App() {
       const listOfClinicians = list.map(clinician => {
         return (
           <Clinician
-          key={clinician.id} 
-          id={clinician.id} 
+          key={clinician.id}  
           name={clinician.name} 
-          title={clinician.title} 
-          clinicId={clinician.clinic_id}
+          title={clinician.title}
           />
         )
       })
@@ -98,6 +97,10 @@ function App() {
       setPatientList(patientList => patientList.filter(patient => patient.props.id !== id))
     })
   }
+
+  function patientUpdate() {
+    setOnUpdate(update => !update)
+  }
   
   return (
     <div className="App">
@@ -105,7 +108,7 @@ function App() {
       <Homepage/>
       </Route>
       <Route path="/patients">
-      <NewPatientForm onPatientChange={addPatient} onPatientDelete={deletePatient}/>
+      <NewPatientForm onPatientChange={addPatient} onPatientDelete={deletePatient} onUpdate={patientUpdate}/>
       <br></br>
       <PatientForm/>
       <br></br>

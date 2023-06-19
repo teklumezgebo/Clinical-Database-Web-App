@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Patient from "./Patient";
 
-function NewPatientForm({ onPatientChange, onPatientDelete }) {
+function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [hypertension, setHypertensive] = useState('')
@@ -70,6 +70,7 @@ function NewPatientForm({ onPatientChange, onPatientDelete }) {
             setLastName('')
             setDiabetic('')
             setHypertensive('')
+            onUpdate()
         })
     }
 
@@ -77,11 +78,11 @@ function NewPatientForm({ onPatientChange, onPatientDelete }) {
     return (
         <div>
             <form onSubmit={handleNewPatient}>
-            <input type="text" placeholder="First Name" onChange={handleFirstName}></input>
-            <input type="text" placeholder="Last Name" onChange={handleLastName}></input>
-            <input type="checkbox" id="hypertension" onChange={handleHypertension}></input>
+            <input type="text" placeholder="First Name" onChange={handleFirstName} value={firstName}></input>
+            <input type="text" placeholder="Last Name" onChange={handleLastName} value={lastName}></input>
+            <input type="checkbox" id="hypertension" onChange={handleHypertension}value={hypertension}></input>
             <label htmlFor="hypertension">Hypertenstion</label>
-            <input type="checkbox" id="diabetes" onChange={handleDiabetic}></input>
+            <input type="checkbox" id="diabetes" onChange={handleDiabetic} value={diabetes}></input>
             <label htmlFor="diabetes">Diabetes</label>
             <br></br>
             <input type="submit" value="Add New"></input>

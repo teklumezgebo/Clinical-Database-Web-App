@@ -1,9 +1,9 @@
 import React from "react";
 
-function Clinician({ id, name, title, clinicId }) {
+function Clinician({ name, title}) {
     return(
         <div>
-            <h4>{name}, {title}  {clinicId}</h4>
+            <h4>{name}, {title}</h4>
         </div>
     )
 }

@@ -39,7 +39,7 @@ function NewClinicainForm({ onClinicianChange }) {
         })
         .then(res => res.json())
         .then(clinician => {
-            const newClinician = <Clinician key={clinician.id} id={clinician.id} name={clinician.name} title={clinician.title} clinicId={clinician.clinic_id}/>
+            const newClinician = <Clinician key={clinician.id} name={clinician.name} title={clinician.title} clinicId={clinician.clinic_id}/>
             onClinicianChange(newClinician)
         })
     }
