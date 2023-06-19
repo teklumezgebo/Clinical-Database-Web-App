@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Patient from "./Patient";
+import SearchedPatient from "./SearchedPatient";
 
 function PatientSearchForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [displayedPatient, setDisplayedPatient] = useState('')
-
+    const [pageLoaded, setPageLoaded] = useState(false)
+  
     function onFirstNameChange(event) {
         setFirstName(event.target.value)
     }
@@ -19,7 +20,8 @@ function PatientSearchForm() {
         fetch(`http://localhost:9292/patients/${firstName}/${lastName}`)
         .then(res => res.json())
         .then(patient => {
-            const displayedPatient = <Patient firstName={patient.first_name} lastName={patient.last_name}/>
+            setPageLoaded(true)
+            const displayedPatient = <SearchedPatient id={patient.id} firstName={patient.first_name} lastName={patient.last_name} pageLoaded={pageLoaded}/>
             setDisplayedPatient(displayedPatient)
             setFirstName('')
             setLastName('')
