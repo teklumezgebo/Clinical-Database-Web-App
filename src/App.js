@@ -69,8 +69,8 @@ function App() {
           key={clinic.id} 
           id={clinic.id} 
           name={clinic.name} 
-          location={clinic.location} 
-          clinicians={clinic.clinicians}
+          location={clinic.location}
+          clinicians={clinic.clinicians.length}
           />
         )
       })
@@ -79,15 +79,15 @@ function App() {
   }, [])
 
   function addPatient(patient) {
-    setPatientList([patient, ...patientList])
+    setPatientList([...patientList, patient])
   }
 
   function addClinician(clinician) {
-    setClinicianList([clinician, ...clinicianList])
+    setClinicianList([ ...clinicianList, clinician])
   }
 
   function addClinic(clinic) {
-    setClinicList([clinic, ...clinicList])
+    setClinicList([...clinicList, clinic])
   }
 
   function deletePatient(id) {

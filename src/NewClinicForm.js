@@ -29,7 +29,7 @@ function NewClinicForm({ onClinicAddition }) {
         })
         .then(res => res.json())
         .then(clinic => {
-            const newClinic = <Clinic id={clinic.id} name={clinic.name} location={clinic.location}/>
+            const newClinic = <Clinic id={clinic.id} name={clinic.name} location={clinic.location} clinicians={clinic.clinicians.length}/>
             onClinicAddition(newClinic)
         })
     }
