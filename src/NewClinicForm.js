@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Clinic from "./Clinic";
 
-function NewClinicForm({ onClinicChange }) {
+function NewClinicForm({ onClinicAddition }) {
     const [name, setName] = useState('')
     const [location, setLocation] = useState('')
 
@@ -30,7 +30,7 @@ function NewClinicForm({ onClinicChange }) {
         .then(res => res.json())
         .then(clinic => {
             const newClinic = <Clinic id={clinic.id} name={clinic.name} location={clinic.location}/>
-            onClinicChange(newClinic)
+            onClinicAddition(newClinic)
         })
     }
     

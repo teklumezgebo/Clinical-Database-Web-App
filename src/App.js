@@ -87,8 +87,7 @@ function App() {
   }
 
   function addClinic(clinic) {
-    const addedClinic = clinicList.unshift(clinic)
-    setClinicList(addedClinic)
+    setClinicList([clinic, ...clinicList])
   }
 
   function deletePatient(id) {
