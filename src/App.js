@@ -9,7 +9,7 @@ import PatientList from './PatientList';
 import ClinicianList from './ClinicianList';
 import ClinicList from './ClinicList';
 import Patient from './Patient';
-import Cliniain from './Clinician';
+import Clinician from './Clinician'
 import Clinic from './Clinic';
 import { useState, useEffect } from 'react';
 
@@ -46,7 +46,7 @@ function App() {
     .then(list => {
       const listOfClinicians = list.map(clinician => {
         return (
-          <Cliniain 
+          <Clinician
           key={clinician.id} 
           id={clinician.id} 
           name={clinician.name} 
@@ -69,7 +69,7 @@ function App() {
           key={clinic.id} 
           id={clinic.id} 
           name={clinic.name} 
-          locaiton={clinic.location} 
+          location={clinic.location} 
           clinicians={clinic.clinicians}
           />
         )
