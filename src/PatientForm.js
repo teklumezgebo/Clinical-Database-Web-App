@@ -9,6 +9,14 @@ function PatientForm() {
     const [bpForm, setBpForm] = useState(false)
     const [bsForm, setBsForm] = useState(false)
 
+    const patientForm = {
+        first_name: firstName,
+        last_name: lastName,
+        blood_sugar: bloodSugar,
+        systolic: systolic,
+        diastolic: diastolic
+    }
+
     function onFirstNameChange(event) {
         setFirstName(event.target.value)
     }
@@ -45,14 +53,6 @@ function PatientForm() {
         }
     }
 
-    const patientForm = {
-        first_name: firstName,
-        last_name: lastName,
-        blood_sugar: bloodSugar,
-        systolic: systolic,
-        diastolic: diastolic
-    }
-
     function onPatientFormSubmit(event){
         event.preventDefault()
         fetch(`http://localhost:9292/patientstats`, {
@@ -62,17 +62,22 @@ function PatientForm() {
             },
             body: JSON.stringify(patientForm)
         })
-        .then(res => res.json())
-        .then(console.log('Posted'))
+        .then(() => {
+            setFirstName('')
+            setLastName('')
+            setSystolic('')
+            setDiastolic('')
+            setBloodSugar('')
+        })
     }
     
     
     return (
         <form onSubmit={onPatientFormSubmit}>
-            <input type="text" placeholder="First Name" onChange={onFirstNameChange}></input><br></br>
-            <input type="text" placeholder="Last Name" onChange={onLastNameChange}></input><br></br>
-            {bpForm ?  <div><input type="integer" onChange={onSystolicChange} placeholder="systolic (top number)"></input><br></br><input type="integer" onChange={onDiastolicChange} placeholder="diastolic (bottom number)"></input></div> : null}
-            {bsForm ? <div><input type="integer" onChange={onBloodSugarChange}></input><br></br></div> : null}
+            <input type="text" placeholder="First Name" onChange={onFirstNameChange} value={firstName}></input><br></br>
+            <input type="text" placeholder="Last Name" onChange={onLastNameChange} value={lastName}></input><br></br>
+            {bpForm ?  <div><input type="integer" onChange={onSystolicChange} placeholder="systolic (top number)" value={systolic}></input><br></br><input type="integer" onChange={onDiastolicChange} placeholder="diastolic (bottom number)" value={diastolic}></input></div> : null}
+            {bsForm ? <div><input type="integer" onChange={onBloodSugarChange} value={bloodSugar}></input><br></br></div> : null}
             <input type="checkbox" id="bp" onChange={onBpFormChange}></input>
             <label htmlFor="bp">Blood Pressure</label><br></br>
             <input type="checkbox" id="bs" onChange={onBsFormChange}></input>

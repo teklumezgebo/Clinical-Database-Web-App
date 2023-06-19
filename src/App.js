@@ -1,16 +1,17 @@
 import './App.css';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
-import PatientForm from './PatientForm';
-import NewPatientForm from './NewPatientForm';
-import NewClinicainForm from './NewClinicianForm';
-import NewClinicForm from './NewClinicForm';
 import Homepage from './Homepage';
-import PatientList from './PatientList';
-import ClinicianList from './ClinicianList';
-import ClinicList from './ClinicList';
 import Patient from './Patient';
 import Clinician from './Clinician'
 import Clinic from './Clinic';
+import PatientList from './PatientList';
+import ClinicianList from './ClinicianList';
+import ClinicList from './ClinicList';
+import NewPatientForm from './NewPatientForm';
+import NewClinicainForm from './NewClinicianForm';
+import NewClinicForm from './NewClinicForm';
+import PatientForm from './PatientForm';
+import PatientSearchForm from './PatientSearchForm';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -110,9 +111,12 @@ function App() {
       <Route path="/patients">
       <NewPatientForm onPatientChange={addPatient} onPatientDelete={deletePatient} onUpdate={patientUpdate}/>
       <br></br>
+      <PatientList patientList={patientList}/>
+      </Route>
+      <Route path='/searchpatient'>
       <PatientForm/>
       <br></br>
-      <PatientList patientList={patientList}/>
+      <PatientSearchForm />
       </Route>
       <Route path="/clinicians">
       <NewClinicainForm onClinicianChange={addClinician}/>

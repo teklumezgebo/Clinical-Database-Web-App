@@ -68,8 +68,8 @@ function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
         .then(() => {
             setFirstName('')
             setLastName('')
-            setDiabetic('')
-            setHypertensive('')
+            setDiabetic(false)
+            setHypertensive(false)
             onUpdate()
         })
     }
