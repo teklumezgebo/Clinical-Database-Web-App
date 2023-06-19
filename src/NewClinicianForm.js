@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Clinician from './Clinician'
 
-function NewClinicainForm({ onClinicAddition }) {
+function NewClinicainForm({ onClinicianChange }) {
     const [name, setName] = useState('')
     const [clinic, setClinic] = useState('')
     const [title, setTitle] = useState('')
@@ -22,7 +22,7 @@ function NewClinicainForm({ onClinicAddition }) {
 
     function onTitleChange(event) {
         if (event.target.checked === true) {
-            setTitle(event.target.innerHTML)
+            setTitle(event.target.value)
         } else {
             setTitle('')
         }
@@ -40,7 +40,7 @@ function NewClinicainForm({ onClinicAddition }) {
         .then(res => res.json())
         .then(clinician => {
             const newClinician = <Clinician key={clinician.id} id={clinician.id} name={clinician.name} title={clinician.title} clinicId={clinician.clinic_id}/>
-            onClinicAddition(newClinician)
+            onClinicianChange(newClinician)
         })
     }
     
@@ -48,13 +48,13 @@ function NewClinicainForm({ onClinicAddition }) {
         <form onSubmit={onClinicianFormSubmit}>
             <input type="text" placeholder="Name.." onChange={onNameChange}></input><br></br>
             <input type="text" placeholder="Clinic.." onChange={onClinicNameChange}></input><br></br>
-            <input type="checkbox" id="md" onChange={onTitleChange}></input>
+            <input type="checkbox" id="md" onChange={onTitleChange} value="MD"></input>
             <label for="md">MD</label><br></br>
-            <input type="checkbox" id="do" onChange={onTitleChange}></input>
+            <input type="checkbox" id="do" onChange={onTitleChange} value="DO"></input>
             <label for="do">DO</label><br></br>
-            <input type="checkbox" id="pa" onChange={onTitleChange}></input>
+            <input type="checkbox" id="pa" onChange={onTitleChange} value="PA"></input>
             <label for="pa">PA</label><br></br>
-            <input type="checkbox" id="crnp" onChange={onTitleChange}></input>
+            <input type="checkbox" id="crnp" onChange={onTitleChange} value="CRNP"></input>
             <label for="crnp">CRNP</label><br></br>
             <input type="submit"></input>
         </form>
