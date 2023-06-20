@@ -78,10 +78,12 @@ function PatientForm() {
             <input type="text" placeholder="Last Name" onChange={onLastNameChange} value={lastName}></input><br></br>
             {bpForm ?  <div><input type="integer" onChange={onSystolicChange} placeholder="systolic (top number)" value={systolic}></input><br></br><input type="integer" onChange={onDiastolicChange} placeholder="diastolic (bottom number)" value={diastolic}></input></div> : null}
             {bsForm ? <div><input type="integer" onChange={onBloodSugarChange} value={bloodSugar}></input><br></br></div> : null}
+            <div className="checkbox-container">
             <input type="checkbox" id="bp" onChange={onBpFormChange}></input>
             <label htmlFor="bp">Blood Pressure</label><br></br>
             <input type="checkbox" id="bs" onChange={onBsFormChange}></input>
             <label htmlFor="bs">Blood Sugar</label><br></br>
+            </div>
             <input type="submit"></input>
         </form>
     )
