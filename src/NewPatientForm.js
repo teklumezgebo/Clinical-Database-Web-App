@@ -80,10 +80,12 @@ function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
             <form onSubmit={handleNewPatient}>
             <input type="text" placeholder="First Name" onChange={handleFirstName} value={firstName}></input>
             <input type="text" placeholder="Last Name" onChange={handleLastName} value={lastName}></input>
+            <div className="checkbox-container">
             <input type="checkbox" id="hypertension" onChange={handleHypertension}value={hypertension}></input>
             <label htmlFor="hypertension">Hypertenstion</label>
             <input type="checkbox" id="diabetes" onChange={handleDiabetic} value={diabetes}></input>
             <label htmlFor="diabetes">Diabetes</label>
+            </div>
             <br></br>
             <input type="submit" value="Add New"></input>
             </form>

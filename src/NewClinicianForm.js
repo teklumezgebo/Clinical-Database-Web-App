@@ -46,6 +46,7 @@ function NewClinicainForm({ onClinicianChange }) {
     
     return (
         <form onSubmit={onClinicianFormSubmit}>
+            <div className="checkbox-container">
             <input type="text" placeholder="Name.." onChange={onNameChange}></input><br></br>
             <input type="text" placeholder="Clinic.." onChange={onClinicNameChange}></input><br></br>
             <input type="checkbox" id="md" onChange={onTitleChange} value="MD"></input>
@@ -56,6 +57,7 @@ function NewClinicainForm({ onClinicianChange }) {
             <label for="pa">PA</label><br></br>
             <input type="checkbox" id="crnp" onChange={onTitleChange} value="CRNP"></input>
             <label for="crnp">CRNP</label><br></br>
+            </div>
             <input type="submit"></input>
         </form>
     )

@@ -1,6 +1,7 @@
 import './App.css';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import Homepage from './Homepage';
+import Navbar from './Navbar';
 import Patient from './Patient';
 import Clinician from './Clinician'
 import Clinic from './Clinic';
@@ -105,6 +106,7 @@ function App() {
   
   return (
     <div className="App">
+      <Navbar />
       <Route exact path="/">
       <Homepage/>
       </Route>
@@ -120,6 +122,7 @@ function App() {
       </Route>
       <Route path="/clinicians">
       <NewClinicainForm onClinicianChange={addClinician}/>
+      <br></br>
       <ClinicianList clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
