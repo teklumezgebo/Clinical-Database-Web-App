@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Clinician from './Clinician'
 
-function NewClinicainForm({ onClinicianChange }) {
+function NewClinicainhtmlForForm({ onClinicianChange }) {
     const [name, setName] = useState('')
     const [clinic, setClinic] = useState('')
     const [title, setTitle] = useState('')
@@ -50,17 +50,17 @@ function NewClinicainForm({ onClinicianChange }) {
             <input type="text" placeholder="Name.." onChange={onNameChange}></input><br></br>
             <input type="text" placeholder="Clinic.." onChange={onClinicNameChange}></input><br></br>
             <input type="checkbox" id="md" onChange={onTitleChange} value="MD"></input>
-            <label for="md">MD</label><br></br>
+            <label htmlFor="md">MD</label><br></br>
             <input type="checkbox" id="do" onChange={onTitleChange} value="DO"></input>
-            <label for="do">DO</label><br></br>
+            <label htmlFor="do">DO</label><br></br>
             <input type="checkbox" id="pa" onChange={onTitleChange} value="PA"></input>
-            <label for="pa">PA</label><br></br>
+            <label htmlFor="pa">PA</label><br></br>
             <input type="checkbox" id="crnp" onChange={onTitleChange} value="CRNP"></input>
-            <label for="crnp">CRNP</label><br></br>
+            <label htmlFor="crnp">CRNP</label><br></br>
             </div>
             <input type="submit"></input>
         </form>
     )
 }
 
-export default NewClinicainForm
+export default NewClinicainhtmlForForm
