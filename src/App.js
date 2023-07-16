@@ -5,14 +5,12 @@ import Navbar from './Navbar';
 import Patient from './Patient';
 import Clinician from './Clinician'
 import Clinic from './Clinic';
-import PatientList from './PatientList';
-import ClinicianList from './ClinicianList';
 import ClinicList from './ClinicList';
 import NewPatientForm from './NewPatientForm';
 import NewClinicainForm from './NewClinicianForm';
 import NewClinicForm from './NewClinicForm';
 import PatientForm from './PatientForm';
-import PatientSearchForm from './PatientSearchForm';
+import PatientSearch from './PatientSearch';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -71,7 +69,6 @@ function App() {
           id={clinic.id} 
           name={clinic.name} 
           location={clinic.location}
-          clinicians={clinic.clinicians.length}
           />
         )
       })
@@ -101,29 +98,27 @@ function App() {
   }
 
   function patientUpdate() {
-    setOnUpdate(update => !update)
+    setOnUpdate((update) => !update)
   }
   
   return (
     <div className="App">
-      <Navbar />
+      <Navbar/>
       <Route exact path="/">
       <Homepage/>
       </Route>
       <Route path="/patients">
       <NewPatientForm onPatientChange={addPatient} onPatientDelete={deletePatient} onUpdate={patientUpdate}/>
       <br></br>
-      <PatientList patientList={patientList}/>
       </Route>
       <Route path='/searchpatient'>
-      <PatientForm/>
-      <br></br>
-      <PatientSearchForm />
+      <PatientSearch patientList={patientList} onPatientDelete={deletePatient} onListUpdate={patientUpdate}/>
+      </Route>
+      <Route path='/patientstats'>
+      <PatientForm />
       </Route>
       <Route path="/clinicians">
-      <NewClinicainForm onClinicianChange={addClinician}/>
-      <br></br>
-      <ClinicianList clinicianList={clinicianList}/>
+      <NewClinicainForm onClinicianChange={addClinician} clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
       <NewClinicForm onClinicAddition={addClinic}/>

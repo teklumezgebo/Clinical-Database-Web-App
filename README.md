@@ -7,5 +7,4 @@ be stored within this database. These vital signs are associated to a specific p
 
 ### Technologies
 
-React is used for this app alongside its technologies. useState and useEffect are used heavily to store changing data 
-and fetch data from the database respectively. 
+React is used for this app alongside its technologies. useState and useEffect are used heavily to store changing data and fetch data from the database respectively. 

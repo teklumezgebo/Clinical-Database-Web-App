@@ -1,12 +1,22 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Patient from "./Patient";
 
-function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
+function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
+
+    const [searchedPatient, setSearchedPatient] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [hypertension, setHypertensive] = useState('')
     const [diabetes, setDiabetic] = useState('')
+
+    function onSearchedNameChange(event) {
+        setSearchedPatient(event.target.value)
+    }
+
+    const filteredList = patientList.filter(patient => 
+        patient.props.firstName.toLowerCase().includes(searchedPatient.toLowerCase()) ||
+        patient.props.lastName.toLowerCase().includes(searchedPatient.toLowerCase())
+    )
 
     const patientObj = {
         first_name: firstName,
@@ -39,31 +49,54 @@ function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
         }
     }
 
-    function handleNewPatientSubmit(event) {
+    function onPatientClick(firstName, lastName, hypertension, diabetes) {
+        setFirstName(firstName)
+        setLastName(lastName)
+        setHypertensive(hypertension)
+        setDiabetic(diabetes)
+
+        if (hypertension === true) {
+            document.getElementById('hypertension').checked = true
+        } else {
+            document.getElementById('hypertension').checked = false
+        }
+
+        if (diabetes === true) {
+            document.getElementById('diabetes').checked = true
+        } else {
+            document.getElementById('diabetes').checked = false
+        }
+    }
+
+    function handleUpdatePatientSubmit(event) {
         event.preventDefault()
         fetch('http://localhost:9292/patients', {
-            method: "POST",
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(patientObj)
         })
         .then(res => res.json())
-        .then(patient => {
-            const newPatient = <Patient id={patient.id} firstName={patient.first_name} lastName={patient.last_name} hypertension={patient.hypertension} diabetes={patient.diabetes} onDelete={onPatientDelete} />
-            onPatientChange(newPatient)
+        .then(() => {
             setFirstName("")
             setLastName("")
             setHypertensive(false)
             setDiabetic(false)
             document.getElementById('hypertension').checked = false
             document.getElementById('diabetes').checked = false
+            onListUpdate()
         })
     }
-    
+
     return (
-        <div>
-            <form onSubmit={handleNewPatientSubmit}>
+    <div>
+        <input type="text" placeholder="Search" onChange={onSearchedNameChange} value={searchedPatient}></input>
+        <br></br>
+        <br></br>
+        <p>Click the patient to update their demographics!</p>
+        <br></br>
+        <form onSubmit={handleUpdatePatientSubmit}>
             <input type="text" placeholder="First Name" onChange={handleFirstName} value={firstName}></input>
             <input type="text" placeholder="Last Name" onChange={handleLastName} value={lastName}></input>
             <div className="checkbox-container">
@@ -73,10 +106,16 @@ function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
             <label htmlFor="diabetes">Diabetic</label>
             </div>
             <br></br>
-            <input type="submit" value="Add New"></input>
-            </form>
+            <input type="submit" value="Update"></input>
+        </form>
+        <br></br>
+        <div className="container-div">
+            {filteredList.map(patient => (
+            <Patient key={patient.props.id} id={patient.props.id} firstName={patient.props.firstName} lastName={patient.props.lastName} hypertension={patient.props.hypertension} diabetes={patient.props.diabetes} onDelete={onPatientDelete} onClick={onPatientClick}/>
+            ))}
         </div>
+    </div>
     )
 }
 
-export default NewPatientForm
+export default PatientSearch

@@ -5,8 +5,9 @@ function Navbar() {
     return (
         <div className="link-container">
             <Link to='/'>Home</Link>
-            <Link to='/patients'>New/Update Patient</Link>
+            <Link to='/patients'>Add Patient</Link>
             <Link to='/searchpatient'>Search For Patient</Link>
+            <Link to='/patientstats'>Patient Stats</Link>
             <Link to='/clinicians'>Clinicians</Link>
             <Link to='/clinics'>Clinics</Link>
         </div>
