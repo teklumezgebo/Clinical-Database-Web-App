@@ -35,6 +35,8 @@ function PatientForm() {
     function onBpFormChange(event) {
         if (event.target.checked === true) {
             setBpForm(true)
+            setBsForm(false)
+            document.getElementById('bs').checked = false
         } else if (event.target.checked === false) {
             setBpForm(false)
         }
@@ -43,6 +45,8 @@ function PatientForm() {
     function onBsFormChange(event) {
         if (event.target.checked === true) {
             setBsForm(true)
+            setBpForm(false)
+            document.getElementById('bp').checked = false
         } else if (event.target.checked === false) {
             setBsForm(false)
         }
@@ -70,9 +74,9 @@ function PatientForm() {
         })
         .then(res => res.json())
         .then(vitals => {
-            const type = bsForm ? vitals.blood_sugars.map(vital => <p key={vital.id}>{vital.blood_sugar}</p>) : vitals.blood_pressures.map(vital => <p key={vital.id}>{vital.blood_pressure}</p>)
-            const patientInfo = <div>
-                <h2>{firstName}'s Recent {bsForm ? "Blood Sugar" : "Blood Pressure"} Readings</h2>
+            const type = bsForm ? vitals.blood_sugars.map(vital => <p key={vital.id} className="medical-reading">{vital.blood_sugar} mg/dL</p>) : vitals.blood_pressures.map(vital => <p key={vital.id} className="medical-reading">{vital.blood_pressure}</p>)
+            const patientInfo = <div className="medical-container">
+                <h2 className="medical-heading">{firstName}'s Recent {bsForm ? "Blood Sugar" : "Blood Pressure"} Readings</h2>
                 {type}
             </div>
             setPatient(patientInfo)
@@ -85,8 +89,8 @@ function PatientForm() {
             <form onSubmit={onPatientFormSubmit}>
                 <input type="text" placeholder="First Name" onChange={onFirstNameChange} value={firstName}></input>
                 <input type="text" placeholder="Last Name" onChange={onLastNameChange} value={lastName}></input><br></br>
-                {bpForm ? <input type="integer" onChange={onBloodPressureChange} placeholder="bp reading.." value={bloodPressure}></input> : null}
-                {bsForm ? <div><input type="integer" onChange={onBloodSugarChange} placeholder="glucometer reading" value={bloodSugar}></input><br></br></div> : null}
+                {bpForm ? <input type="integer" onChange={onBloodPressureChange} placeholder="BP Reading" value={bloodPressure}></input> : null}
+                {bsForm ? <div><input type="integer" onChange={onBloodSugarChange} placeholder="Glucose Level" value={bloodSugar}></input><br></br></div> : null}
                 <div className="checkbox-container">
                 <input type="checkbox" id="bp" onChange={onBpFormChange}></input>
                 <label htmlFor="bp">Blood Pressure</label><br></br>

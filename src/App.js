@@ -114,7 +114,7 @@ function App() {
       <Route path='/searchpatient'>
       <PatientSearch patientList={patientList} onPatientDelete={deletePatient} onListUpdate={patientUpdate}/>
       </Route>
-      <Route path='/patientstats'>
+      <Route path='/patientvitals'>
       <PatientForm />
       </Route>
       <Route path="/clinicians">

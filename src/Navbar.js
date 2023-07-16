@@ -7,7 +7,7 @@ function Navbar() {
             <Link to='/'>Home</Link>
             <Link to='/patients'>Add Patient</Link>
             <Link to='/searchpatient'>Search For Patient</Link>
-            <Link to='/patientstats'>Patient Stats</Link>
+            <Link to='/patientvitals'>Patient Vitals</Link>
             <Link to='/clinicians'>Clinicians</Link>
             <Link to='/clinics'>Clinics</Link>
         </div>
