@@ -32,7 +32,9 @@ function App() {
             firstName={patient.first_name} 
             lastName={patient.last_name} 
             hypertension={patient.hypertension} 
-            diabetes={patient.diabetes} 
+            diabetes={patient.diabetes}
+            bloodPressures={patient.blood_pressures}
+            bloodSugars={patient.blood_sugars}
             onDelete={deletePatient}
             />
           )
@@ -115,7 +117,7 @@ function App() {
       <PatientSearch patientList={patientList} onPatientDelete={deletePatient} onListUpdate={patientUpdate}/>
       </Route>
       <Route path='/patientvitals'>
-      <PatientForm />
+      <PatientForm onUpdate={patientUpdate}/>
       </Route>
       <Route path="/clinicians">
       <NewClinicainForm onClinicianChange={addClinician} clinicianList={clinicianList}/>

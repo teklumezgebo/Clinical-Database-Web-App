@@ -111,7 +111,7 @@ function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
         <br></br>
         <div className="container-div">
             {filteredList.map(patient => (
-            <Patient key={patient.props.id} id={patient.props.id} firstName={patient.props.firstName} lastName={patient.props.lastName} hypertension={patient.props.hypertension} diabetes={patient.props.diabetes} onDelete={onPatientDelete} onClick={onPatientClick}/>
+            <Patient key={patient.props.id} id={patient.props.id} firstName={patient.props.firstName} lastName={patient.props.lastName} hypertension={patient.props.hypertension} diabetes={patient.props.diabetes} bloodPressures={patient.props.bloodPressures} bloodSugars={patient.props.bloodSugars} onDelete={onPatientDelete} onClick={onPatientClick}/>
             ))}
         </div>
     </div>

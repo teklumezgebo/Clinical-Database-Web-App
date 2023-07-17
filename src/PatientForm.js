@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
-function PatientForm() {
+function PatientForm({ onUpdate }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [bloodSugar, setBloodSugar] = useState('')
     const [bloodPressure, setBloodPressure] = useState('')
     const [bpForm, setBpForm] = useState(false)
     const [bsForm, setBsForm] = useState(false)
-    const [patient, setPatient] = useState('')
 
     const patientForm = {
         firstName: firstName,
@@ -72,15 +71,9 @@ function PatientForm() {
             },
             body: JSON.stringify(patientForm)
         })
-        .then(res => res.json())
-        .then(vitals => {
-            const type = bsForm ? vitals.blood_sugars.map(vital => <p key={vital.id} className="medical-reading">{vital.blood_sugar} mg/dL</p>) : vitals.blood_pressures.map(vital => <p key={vital.id} className="medical-reading">{vital.blood_pressure}</p>)
-            const patientInfo = <div className="medical-container">
-                <h2 className="medical-heading">{firstName}'s Recent {bsForm ? "Blood Sugar" : "Blood Pressure"} Readings</h2>
-                {type}
-            </div>
-            setPatient(patientInfo)
+        .then(() => {
             clearForm()
+            onUpdate()
         })
     }
     
@@ -99,8 +92,6 @@ function PatientForm() {
                 </div>
                 <input type="submit"></input>
             </form>
-            <br></br>
-            {patient}
         </div>
     )
 }
