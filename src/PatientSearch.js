@@ -14,8 +14,8 @@ function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
     }
 
     const filteredList = patientList.filter(patient => 
-        patient.props.firstName.toLowerCase().includes(searchedPatient.toLowerCase()) ||
-        patient.props.lastName.toLowerCase().includes(searchedPatient.toLowerCase())
+        patient.first_name.toLowerCase().includes(searchedPatient.toLowerCase()) ||
+        patient.last_name.toLowerCase().includes(searchedPatient.toLowerCase())
     )
 
     const patientObj = {
@@ -111,7 +111,7 @@ function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
         <br></br>
         <div className="container-div">
             {filteredList.map(patient => (
-            <Patient key={patient.props.id} id={patient.props.id} firstName={patient.props.firstName} lastName={patient.props.lastName} hypertension={patient.props.hypertension} diabetes={patient.props.diabetes} bloodPressures={patient.props.bloodPressures} bloodSugars={patient.props.bloodSugars} onDelete={onPatientDelete} onClick={onPatientClick}/>
+            <Patient key={patient.id} id={patient.id} firstName={patient.first_name} lastName={patient.last_name} hypertension={patient.hypertension} diabetes={patient.diabetes} bloodPressures={patient.blood_pressures} bloodSugars={patient.blood_sugars} onDelete={onPatientDelete} onClick={onPatientClick}/>
             ))}
         </div>
     </div>

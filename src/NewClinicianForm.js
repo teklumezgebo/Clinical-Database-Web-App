@@ -33,8 +33,7 @@ function NewClinicainhtmlForForm({ onClinicianChange, clinicianList }) {
         })
         .then(res => res.json())
         .then(clinician => {
-            const newClinician = <Clinician key={clinician.id} name={clinician.name} title={clinician.title}/>
-            onClinicianChange(newClinician)
+            onClinicianChange(clinician)
             setName('')
             document.getElementById('md').checked = false
             document.getElementById('do').checked = false
@@ -62,7 +61,15 @@ function NewClinicainhtmlForForm({ onClinicianChange, clinicianList }) {
                 <input type="submit"></input>
             </form>
             <br></br>
-            {clinicianList}
+            {clinicianList.map(clinician => {
+                return(
+                    <Clinician
+                    key={clinician.id}  
+                    name={clinician.name} 
+                    title={clinician.title}
+                    />
+                )
+            })}
         </div>
     )
 }

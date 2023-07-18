@@ -2,9 +2,6 @@ import './App.css';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import Homepage from './Homepage';
 import Navbar from './Navbar';
-import Patient from './Patient';
-import Clinician from './Clinician'
-import Clinic from './Clinic';
 import ClinicList from './ClinicList';
 import NewPatientForm from './NewPatientForm';
 import NewClinicainForm from './NewClinicianForm';
@@ -24,22 +21,7 @@ function App() {
     fetch('http://localhost:9292/patients')
     .then(res => res.json())
     .then(list => {
-      const listOfPatients = list.map(patient => {
-          return (
-            <Patient 
-            key={patient.id} 
-            id={patient.id} 
-            firstName={patient.first_name} 
-            lastName={patient.last_name} 
-            hypertension={patient.hypertension} 
-            diabetes={patient.diabetes}
-            bloodPressures={patient.blood_pressures}
-            bloodSugars={patient.blood_sugars}
-            onDelete={deletePatient}
-            />
-          )
-      })
-      setPatientList(listOfPatients)
+      setPatientList(list)
   })
   }, [update])
 
@@ -47,16 +29,7 @@ function App() {
     fetch('http://localhost:9292/clinicians')
     .then(res => res.json())
     .then(list => {
-      const listOfClinicians = list.map(clinician => {
-        return (
-          <Clinician
-          key={clinician.id}  
-          name={clinician.name} 
-          title={clinician.title}
-          />
-        )
-      })
-      setClinicianList(listOfClinicians)
+      setClinicianList(list)
     })
   }, [])
 
@@ -64,17 +37,7 @@ function App() {
     fetch('http://localhost:9292/clinics')
     .then(res => res.json())
     .then(list => {
-      const listofClinics = list.map(clinic => {
-        return (
-          <Clinic 
-          key={clinic.id} 
-          id={clinic.id} 
-          name={clinic.name} 
-          location={clinic.location}
-          />
-        )
-      })
-      setClinicList(listofClinics)
+      setClinicList(list)
     })
   }, [])
 

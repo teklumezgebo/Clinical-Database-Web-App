@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import Patient from "./Patient";
 
 function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
     const [firstName, setFirstName] = useState('')
@@ -50,8 +49,7 @@ function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
         })
         .then(res => res.json())
         .then(patient => {
-            const newPatient = <Patient id={patient.id} firstName={patient.first_name} lastName={patient.last_name} hypertension={patient.hypertension} diabetes={patient.diabetes} onDelete={onPatientDelete} />
-            onPatientChange(newPatient)
+            onPatientChange(patient)
             setFirstName("")
             setLastName("")
             setHypertensive(false)
