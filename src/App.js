@@ -58,7 +58,7 @@ function App() {
         method: "DELETE"
     })
     .then(() => {
-      setPatientList(patientList => patientList.filter(patient => patient.props.id !== id))
+      setPatientList(patientList => patientList.filter(patient => patient.id !== id))
     })
   }
 
