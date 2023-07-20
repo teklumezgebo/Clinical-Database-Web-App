@@ -2,7 +2,6 @@ import './App.css';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import Homepage from './Homepage';
 import Navbar from './Navbar';
-import ClinicList from './ClinicList';
 import NewPatientForm from './NewPatientForm';
 import NewClinicainForm from './NewClinicianForm';
 import NewClinicForm from './NewClinicForm';
@@ -75,9 +74,7 @@ function App() {
       <NewClinicainForm onClinicianChange={addClinician} clinicianList={clinicianList}/>
       </Route>
       <Route path="/clinics">
-      <NewClinicForm onClinicAddition={addClinic} />
-      <br></br>
-      <ClinicList clinicList={clinicList} />
+      <NewClinicForm onClinicAddition={addClinic} clinicList={clinicList} />
       </Route>
     </div>
   );

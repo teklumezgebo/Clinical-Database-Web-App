@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Clinic from "./Clinic";
 
-function NewClinicForm({ onClinicAddition }) {
+function NewClinicForm({ onClinicAddition, clinicList }) {
     const [name, setName] = useState('')
     const [location, setLocation] = useState('')
 
@@ -35,11 +36,24 @@ function NewClinicForm({ onClinicAddition }) {
     }
     
     return(
+        <div>
         <form onSubmit={onClincFormSubmit}>
             <input type="text" placeholder="Clinic name.." onChange={onNameChange} value={name}></input>
             <input type="text" placeholder="Clinic location.." onChange={onLocationChange} value={location}></input>
             <input type="submit"></input>
         </form>
+        <br></br>
+        {clinicList.map(clinic => {
+            return (
+                <Clinic 
+                key={clinic.id} 
+                id={clinic.id} 
+                name={clinic.name} 
+                location={clinic.location}
+          />
+            )
+        })}
+        </div>
     )
 }
 
