@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function NewPatientForm({ onPatientChange, onPatientDelete, onUpdate }) {
+function NewPatientForm({ onPatientChange }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [hypertension, setHypertensive] = useState('')

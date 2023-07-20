@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Patient from "./Patient";
 
-function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
+function PatientSearch({ patientList, onPatientDelete, onPatientUpdate }) {
 
     const [searchedPatient, setSearchedPatient] = useState('')
     const [firstName, setFirstName] = useState('')
@@ -68,6 +68,37 @@ function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
         }
     }
 
+    function updateDemographics(patient) {
+        const updatedPatient = patientList.find(p => p.id === patient.id)
+        const patientIndex = patientList.findIndex(p => p.id === updatedPatient.id)
+
+        if (hypertension === true) {
+            updatedPatient.hypertension = true
+        } else {
+            updatedPatient.hypertension = false
+        }
+
+        if (diabetes === true) {
+            updatedPatient.diabetes = true
+        } else {
+            updatedPatient.diabetes = false
+        }
+
+        if (patientIndex !== -1) {
+            patientList[patientIndex] = updatedPatient
+            onPatientUpdate(patientList)
+        }
+    }
+
+    function clearForm() {
+        setFirstName("")
+        setLastName("")
+        setHypertensive(false)
+        setDiabetic(false)
+        document.getElementById('hypertension').checked = false
+        document.getElementById('diabetes').checked = false
+    }
+
     function handleUpdatePatientSubmit(event) {
         event.preventDefault()
         fetch('http://localhost:9292/patients', {
@@ -78,14 +109,9 @@ function PatientSearch({ patientList, onPatientDelete, onListUpdate }) {
             body: JSON.stringify(patientObj)
         })
         .then(res => res.json())
-        .then(() => {
-            setFirstName("")
-            setLastName("")
-            setHypertensive(false)
-            setDiabetic(false)
-            document.getElementById('hypertension').checked = false
-            document.getElementById('diabetes').checked = false
-            onListUpdate()
+        .then(patient => {
+            updateDemographics(patient)
+            clearForm()
         })
     }
 

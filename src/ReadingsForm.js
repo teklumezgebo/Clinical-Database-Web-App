@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PatientForm({ onUpdate }) {
+function ReadingsForm({ patientList, onReadingUpdate }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [bloodSugar, setBloodSugar] = useState('')
@@ -51,6 +51,22 @@ function PatientForm({ onUpdate }) {
         }
     }
 
+    function addReading(patient) {
+        const updatedPatient = patientList.find(p => p.id === patient.id)
+        const patientIndex = patientList.findIndex(p => p.id === updatedPatient.id)
+
+        if (bpForm === true) {
+            updatedPatient.blood_pressures = [...updatedPatient.blood_pressures, {id: updatedPatient.blood_pressures.length + 123, blood_pressure: bloodPressure}]
+        } else {
+            updatedPatient.blood_sugars = [...updatedPatient.blood_sugars, {id: updatedPatient.blood_pressures.length + 123, blood_sugar: bloodSugar}]
+        }
+
+        if (patientIndex !== -1) {
+            patientList[patientIndex] = updatedPatient
+            onReadingUpdate(patientList)
+        }
+    }
+
     function clearForm() {
         setFirstName('')
         setLastName('')
@@ -71,9 +87,10 @@ function PatientForm({ onUpdate }) {
             },
             body: JSON.stringify(patientForm)
         })
-        .then(() => {
+        .then(res => res.json())
+        .then(patient => {
+            addReading(patient)
             clearForm()
-            onUpdate()
         })
     }
     
@@ -96,4 +113,4 @@ function PatientForm({ onUpdate }) {
     )
 }
 
-export default PatientForm
+export default ReadingsForm
