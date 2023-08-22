@@ -1,11 +1,22 @@
-# User Interface for patient, clinician, and clinic database
-## Backend Repo -> https://github.com/teklumezgebo/Clinical-Database
+# Clinical Database Web App
 
-This web app was created to interact with a database that hold information about patients, clinicians, and clinics.
-Users are able to add their own patients, clinicians, and clinics to the database and which will be persisted. Users
-are also able to update existing patients i.e updating a diagnosis. Blood pressures and blood sugars are also able to
-be stored within this database. These vital signs are associated to a specific patient which is handled by the database.
+### [Backend Repository](https://github.com/teklumezgebo/Clinical-Database)
 
-### Technologies
+Welcome to the Clinical Database Web App! This application was meticulously crafted to seamlessly interact with a powerful database containing critical information about patients, clinicians, and clinics.
 
-React is used for this app alongside its technologies. useState and useEffect are used heavily to store changing data and fetch data from the database respectively. 
+## Overview
+
+In this web app, users are empowered to perform the following actions:
+
+- **Add Records:** Easily contribute patients, clinicians, and clinics to the database, enhancing its richness and scope.
+- **Update Information:** Keep the database current by making updates, such as modifying patient diagnoses for accurate information.
+- **Vital Signs:** Record essential health data like blood pressures and blood sugars, associating them with specific patients.
+- **Persistence:** All data additions and modifications are seamlessly persisted within the database.
+
+## Technologies
+
+The Patient/Clinician/Clinic Database Web App harnesses the capabilities of React and its associated technologies:
+
+- **React:** The cornerstone of the app, React provides the framework for building dynamic user interfaces.
+- **useState:** This hook is instrumental in managing changing data states, ensuring a seamless and responsive user experience.
+- **useEffect:** By utilizing this hook, the app efficiently fetches data from the database, maintaining real-time updates.

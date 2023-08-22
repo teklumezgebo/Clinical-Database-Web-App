@@ -55,6 +55,14 @@ function ReadingsForm({ patientList, onReadingUpdate }) {
         const updatedPatient = patientList.find(p => p.id === patient.id)
         const patientIndex = patientList.findIndex(p => p.id === updatedPatient.id)
 
+        if (!Array.isArray(updatedPatient.blood_pressures)) {
+            updatedPatient.blood_pressures = []
+        }
+
+        if (!Array.isArray(updatedPatient.blood_sugars)) {
+            updatedPatient.blood_sugars = []
+        }
+
         if (bpForm === true) {
             updatedPatient.blood_pressures = [...updatedPatient.blood_pressures, {id: updatedPatient.blood_pressures.length + 123, blood_pressure: bloodPressure}]
         } else {
